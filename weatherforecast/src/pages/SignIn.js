@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import { useHistory } from "react-router-dom";
 import "./SignIn.css";
 import { auth } from "../firebase/firebase.utilies";
 import logo from "../assets/logo.png";
@@ -7,16 +8,14 @@ import logo from "../assets/logo.png";
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const history = useHistory();
+  const history = useHistory();
 
   const handleSignIn = (e) => {
     e.preventDefault();
 
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((ahmet) => {
-        alert("hello");
-      })
+      .then(()=> history.push("./main"))
       .catch((error) => alert(error.message));
   };
 
